@@ -1,0 +1,161 @@
+{
+  "nav": {
+    "home": "Home",
+    "resume": "Resume",
+    "publications": "Publications",
+    "projects": "Projects",
+    "gallery": "Gallery",
+    "about": "About"
+  },
+  "home": {
+    "greeting": "Hi, I'm|Claire.",
+    "subtitle": "Microclimate · Thermal Environment · Ecological Condition · Renewable Energy.",
+    "description": "My research interests lie in microclimate, thermal environment, and ecological condition,",
+    "description2": "with a focus on remote sensing, spatial analysis, random forest, and deep learning,",
+    "description3": "to better understand environmental conditions and support sustainable environmental management.",
+    "button": "View Resume"
+  },
+  "resume": {
+    "title": "Resume",
+    "education": {
+      "title": "Education",
+      "items": [
+        {
+          "date": "2024.09 – Present",
+          "degree": "M.S. in Geography (Cartography and GIS)",
+          "institution": "Fuzhou University, College of Environment and Safety Engineering",
+          "description": "Focus on renewable energy mapping and geospatial environmental analysis."
+        }
+      ]
+    },
+    "honors": {
+      "title": "Awards & Scholarships",
+      "groups": [
+        {
+          "label": "Awards",
+          "items": [
+            {
+              "date": "2026",
+              "title": "Graduate Academic Scholarship, Third Class",
+              "institution": "Fuzhou University",
+              "description": ""
+            }
+          ]
+        }
+      ]
+    },
+    "projects": {
+      "title": "Project Experience",
+      "items": [
+        {
+          "date": "2025.06",
+          "title": "Deep Learning-Driven Distributed PV Segmentation & Thermal Impact Assessment",
+          "institution": "Fuzhou University · Curricular Research (Independent)",
+          "description": "Applied the SegUNet++ semantic segmentation framework to sub-meter UAV imagery to map distributed rooftop PV across two Dutch cities, supported by LiDAR point density visualization to inspect 3D terrain features and Landsat-8 TIRS to assess local surface warming effects."
+        },
+        {
+          "date": "2025.05",
+          "title": "Causal Attribution of Urban Thermal Dynamics Using TsHARP-Downscaled LST",
+          "institution": "Fuzhou University · Curricular Research (Independent)",
+          "description": "Integrated multi-source data (GAIA, GHSL) to delineate precise urban boundaries in Madrid, and independently downscaled 2025 Landsat LST to 10 m via the TsHARP algorithm. Quantified thermal heterogeneity (2009–2025) via multiple UHI indices (URI, SUHII), and paired Random Forest with GPS-based causal inference to decouple the warming footprint of population expansion from topographic confounders."
+        },
+        {
+          "date": "2025.05",
+          "title": "Spatiotemporal Evaluation and Driver Attribution of Urban Ecological Quality",
+          "institution": "Fuzhou University · Curricular Research (Independent)",
+          "description": "Evaluated multi-temporal (2003, 2014, 2024) ecological dynamics across Greater Vancouver by extracting the remote sensing based ecological index (RSEI) via Principal Component Analysis (PCA) in Google Earth Engine. Conducted spatial statistics and correlation analysis to reveal a distinct \"South-Poor, North-Good\" ecological gradient, identifying vegetation (NDVI, R^2 ≈ 0.9) as the dominant positive driver offsetting the degradation footprint from urban heat and built-up expansion."
+        },
+        {
+          "date": "2024.12",
+          "title": "Impacts of 3D Urban Morphology and Blue-Green Spaces on the Urban Thermal Environment",
+          "institution": "Fuzhou University · Curricular Research (Independent)",
+          "description": "Conducted a comparative geospatial analysis of the Urban Heat Island (UHI) effect across Fuzhou and Singapore by integrating Landsat-8 land surface temperature (LST) with Local Climate Zone (LCZ) classifications. Deployed Moran’s I spatial clustering and Random Forest regression to quantify thermal heterogeneity, revealing that while Fuzhou's LST is primarily mitigated by the spatial extent and connectivity of blue-green patches, Singapore's thermal patterns are dominantly governed by 3D architectural zoning (LCZs) and the clustering of vegetation."
+        },
+        {
+          "date": "2024.12",
+          "title": "Cross-Biome Validation of Red-Edge Vegetation Indices via GF-6 Satellite Imagery",
+          "institution": "Fuzhou University · Curricular Research (Independent)",
+          "description": "Evaluated the cross-regional robustness of six red-edge vegetation indices (e.g., NDRE1, REP, IRECI) for forest health classification across the Rocky Mountains (USA) and Kaçkar Mountains (Turkey). Processed 16m GaoFen-6 (GF-6) WFV imagery, executing R-based boxplot statistical analysis to dynamically delineate vegetation vitality thresholds, alongside custom ArcPy scripts for automated multi-point extraction and confusion matrix validation. Quantified significant algorithmic sensitivity to diverse biomes, identifying NDRE1 and REP as the optimal indices for dry-alpine and humid-temperate ecosystems, respectively (achieving up to 84.4% overall accuracy)."
+        },
+        {
+          "date": "2024.12",
+          "title": "Comparative Evaluation of Atmospheric Correction Models for GF-6 Imagery Across Subtropical Ecosystems",
+          "institution": "Fuzhou University · Curricular Research (Independent)",
+          "description": "Evaluated the spectral consistency of FLAASH and the Image-based Atmospheric Correction Model (IACM) using 16 m GaoFen-6 (GF-6) WFV imagery across the Xishuangbanna and Wuyishan Nature Reserves. Built a preprocessing pipeline integrating orthorectification, radiometric calibration, and BandMath programming to compute surface reflectance based on solar zenith angles and darkest-pixel atmospheric correction. Conducted spectral consistency analysis, revealing that while both models effectively resolve terrain shadows, IACM demonstrates superior spectral restoration for vegetation, better preserving the green peak and red-edge rise in vegetation spectra."
+        }
+      ]
+    },
+   
+    "skills": {
+      "title": "Professional Skills",
+      "items": ["Python (ArcPy, Deep Learning)", "R (Data Visualization & Statistics)", "JavaScript (Google Earth Engine API)", "ArcGIS Suite (Pro, ArcMap, ArcScene) & QGIS", "ENVI & SNAP", "Pix4D, AutoCAD, SketchUp & 3ds Max", "Machine Learning (Random Forest)"]
+    },
+    "languageSkills": {
+      "title": "Language Proficiency",
+      "items": []
+    },
+    "interests": {
+      "title": "Personal Interests",
+      "items": []
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "intro": "Hi, I'm <1>Claire</1>,  a postgraduate student at Fuzhou University pursuing a Master's degree in Cartography and Geographic Information Systems. My core research interests lie at the intersection of spatial data science, renewable energy mapping, and remote sensing ecology.",
+    "paragraph1": "My current research focuses on the automated extraction of photovoltaic (PV) facilities and the systematic evaluation of their ecological and thermal environmental effects. By leveraging multi-source earth observation data (such as Landsat, Sentinel-2, and sub-meter UAV imagery), I map solar infrastructure across diverse landscapes—from distributed urban rooftops to utility-scale solar farms in arid deserts and high-altitude plateaus. I aim to quantify how large-scale renewable energy deployment reshapes local microclimates and ecological gradients.",
+    "paragraph2": "My work combines spatial analysis, remote sensing image processing, machine learning, deep learning, and cloud-native computing. These methods allow me to examine environmental dynamics at multiple spatial and temporal scales, from the local thermal effects of distributed rooftop photovoltaics to the regional ecological impacts of utility-scale solar farms. I hope to contribute to a better understanding of the environmental impacts of renewable energy expansion and to support more sustainable land-use planning and ecological decision-making.",
+    "researchTitle": "Research Interests",
+    "researchInterests": [
+      "Spatial Data Science",
+      "Remote Sensing Ecology",
+      "Renewable Energy Mapping",
+      "Urban Climatology & Thermal Environment",
+      "Deep Learning in Remote Sensing",
+      "Spatial Modeling",
+      "Earth Observation",
+      "Sustainable Environmental Management"
+    ],
+    "contactTitle": "Get in Touch",
+    "contactText": "Feel free to reach out for research discussions, potential collaborations, or related academic opportunities.",
+    "email": "Email",
+    "github": "GitHub",
+    "quote": "Le vent se lève, il faut tenter de vivre"
+  },
+  "projects": {
+    "title": "Projects",
+    "items": [
+      {
+        "title": "Deep Learning-Driven Distributed PV Segmentation & Thermal Impact",
+        "description": "Applied SegUNet++ semantic segmentation to sub-meter UAV imagery for distributed rooftop PV mapping across two Dutch cities, supported by LiDAR point clouds and Landsat-8 TIRS to assess local surface warming effects."
+      },
+      {
+        "title": "Causal Attribution of Urban Thermal Dynamics Using TsHARP",
+        "description": "Downscaled Landsat LST to 10m via the TsHARP algorithm in Madrid. Paired Random Forest with Generalized Propensity Score (GPS) causal inference to decouple the warming footprint of population expansion from topography."
+      },
+      {
+        "title": "Spatiotemporal Evaluation and Driver Attribution of Urban Ecological Quality",
+        "description": "Evaluated multi-temporal (2003, 2014, 2024) ecological dynamics across Greater Vancouver by extracting the remote sensing based ecological index (RSEI) via Principal Component Analysis (PCA) in Google Earth Engine. Conducted spatial statistics and correlation analysis to reveal a distinct \"South-Poor, North-Good\" ecological gradient, identifying vegetation (NDVI, R^2 ≈ 0.9) as the dominant positive driver offsetting the degradation footprint from urban heat and built-up expansion."
+      },
+      {
+        "title": "3D Urban Morphology & Blue-Green Infrastructure UHI Analysis",
+        "description": "Integrated Landsat-8 LST with Local Climate Zone (LCZ) classifications across Fuzhou and Singapore. Deployed Moran's I and Random Forest regression to quantify how architectural zoning and vegetation mitigate urban heat."
+      },
+      {
+        "title": "Cross-Biome Validation of Red-Edge Vegetation Indices via GF-6",
+        "description": "Processed 16m GaoFen-6 WFV imagery to evaluate the cross-regional robustness of red-edge indices (NDRE1, REP) for forest health classification across dry-alpine and humid-temperate ecosystems."
+      },
+      {
+        "title": "Comparative Evaluation of Atmospheric Correction Models for GF-6 Imagery Across Subtropical Ecosystems",
+        "description": "Evaluated the spectral consistency of FLAASH and the Image-based Atmospheric Correction Model (IACM) using 16 m GaoFen-6 (GF-6) WFV imagery across the Xishuangbanna and Wuyishan Nature Reserves. Built a preprocessing pipeline integrating orthorectification, radiometric calibration, and BandMath programming to compute surface reflectance based on solar zenith angles and darkest-pixel atmospheric correction. Conducted spectral consistency analysis, revealing that while both models effectively resolve terrain shadows, IACM demonstrates superior spectral restoration for vegetation, better preserving the green peak and red-edge rise in vegetation spectra."
+      }
+    ]
+  },
+  "gallery": {
+    "title": "Photo Gallery",
+    "tabs": {
+      "nature": "Nature",
+      "humanity": "Humanity",
+      "urban": "Urban"
+    }
+  }
+}

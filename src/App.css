@@ -1,0 +1,911 @@
+/* --- 基础设置 --- */
+html, body, #root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #050505; /* 深色背景 */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- 滚动容器 --- */
+.scroll-container {
+  width: 100%;
+}
+
+.scroll-section {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Home section 保持全屏 */
+.scroll-section:first-child {
+  height: 100vh;
+}
+
+/* --- 导航栏 --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between; /* 两端对齐 */
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 100;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+  backdrop-filter: blur(5px);
+  box-sizing: border-box;
+}
+
+/* 语言切换器 - 左侧 */
+.language-switcher {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.language-switcher span {
+  transition: color 0.3s ease;
+}
+
+.language-switcher span.active {
+  color: #a5b4fc;
+  font-weight: 600;
+}
+
+.language-switcher span:not(.active):hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 导航链接 - 右侧 */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.navbar a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--duration-dropdown) var(--ease-out);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.navbar a:hover {
+  color: #a5b4fc;
+}
+
+.navbar a.active {
+  color: #a5b4fc;
+  font-weight: 600;
+}
+
+/* --- Home 页面的特殊处理 --- */
+/* Home 页面占满整个 section */
+.home-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Canvas 层 */
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* 在 Canvas 之上 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10vw;
+  pointer-events: none;
+}
+
+.hero-content {
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-top-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  width: fit-content;
+  max-width: 90%;
+}
+
+.hero-content button {
+  pointer-events: auto;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw + 1rem, 4rem);
+  margin: 0;
+  color: #a5b4fc;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: #ffffff;
+  font-size: clamp(0.9rem, 1.5vw + 0.5rem, 1.2rem);
+  line-height: 1.8;
+}
+
+/* --- 通用页面容器 (Publications, Resume) --- */
+.page-container {
+  position: relative;
+  padding-top: 100px; /* 给导航栏留位置 */
+  padding-bottom: 50px;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  /* 不设置 z-index，避免创建层叠上下文 */
+}
+
+.content-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.page-title {
+  position: relative;
+  font-size: clamp(1.8rem, 4vw + 0.5rem, 3rem);
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.page-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 12%,
+    rgba(255, 255, 255, 0.18) 60%,
+    transparent 100%
+  );
+}
+
+/* --- Publications 卡片样式 --- */
+.publications-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 每篇论文占满一行，右侧放配图 */
+  gap: 1.5rem;
+}
+
+.pub-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.pub-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* 右侧一列：期刊名 / 配图 / PDF 链接，整体右对齐 */
+.pub-card-aside {
+  width: 340px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.pub-card-aside .pub-venue {
+  font-size: 0.9rem;
+  color: #a5b4fc;
+  text-align: right;
+}
+
+.pub-card-aside .pub-link-compact {
+  margin-top: auto; /* 贴到卡片底部 */
+}
+
+.pub-card-image {
+  width: 100%;
+  height: 220px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.pub-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 科研配图不裁剪，宁可留白 */
+}
+
+/* 尚未发表、暂无配图时的占位框，保持各卡片对齐 */
+.pub-card-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.18);
+}
+
+.pub-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(165, 180, 252, 0.5); /* 悬停时边框变蓝 */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.pub-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #a5b4fc;
+}
+
+.pub-title {
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.pub-authors {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.pub-abstract {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1; /* 让内容撑开，保证底部对齐 */
+}
+
+.pub-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.pub-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background: rgba(165, 180, 252, 0.1);
+  color: #a5b4fc;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.pub-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px solid white;
+  align-self: flex-end;
+}
+
+.abstract-toggle {
+  background: none;
+  border: none;
+  color: #a5b4fc;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.abstract-toggle:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* --- Resume 样式 --- */
+.resume-section {
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  color: #a5b4fc;
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
+}
+
+.resume-item {
+  display: flex;
+  margin-bottom: 2.5rem;
+  border-left: 2px solid rgba(255,255,255,0.1);
+  padding-left: 2rem;
+  position: relative;
+}
+
+.resume-item::before {
+  content: '';
+  position: absolute;
+  left: -6px; /* 调整圆点位置 */
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background: #a5b4fc;
+  border-radius: 50%;
+}
+
+/* 日期靠右，与 PDF 简历的排版一致 */
+.resume-date {
+  order: 2;
+  flex-shrink: 0;
+  min-width: 160px;
+  margin-left: 2rem; /* 与左侧内容保持间距 */
+  text-align: right;
+  font-weight: bold;
+  color: rgba(255,255,255,0.6);
+  padding-top: 4px;
+}
+
+.resume-content {
+  order: 1;
+  flex: 1;
+  min-width: 0;
+}
+
+.resume-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+}
+
+/* 获奖分类（Awards / Scholarships）的小标题 */
+.resume-group-label {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+}
+
+.resume-group + .resume-group {
+  margin-top: 1rem;
+}
+
+/* 已发表论文用标准引用格式，比标题字号小、行距宽一些 */
+.resume-citation {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.92);
+}
+
+.citation-index {
+  color: #a5b4fc;
+  font-weight: 600;
+  margin-right: 0.4rem;
+}
+
+/* 期刊名要真的是斜体：Inter 往往没有斜体字形，浏览器也不一定合成，
+   所以回退到确定带斜体字形的系统无衬线字体 */
+.resume-citation em {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-style: italic;
+}
+
+.institution {
+  margin: 0 0 0.5rem 0;
+  color: #a5b4fc;
+}
+
+.description {
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+}
+
+.skills-list span {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* --- About 页面样式 --- */
+.about-section {
+  margin-bottom: 3rem;
+}
+
+/* About 页面 Lanyard 容器 */
+.about-page {
+  position: relative;
+}
+
+.lanyard-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 25%;
+  height: 100vh;
+  z-index: 10;
+  pointer-events: none; /* 默认不拦截点击 */
+}
+
+.lanyard-container.visible {
+  pointer-events: auto; /* 显示时才拦截点击 */
+}
+
+.lanyard-canvas-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+/* About 页面照片布局 */
+.about-with-photo {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+.about-text-content {
+  flex: 1;
+  min-width: 0; /* 防止 flex 子元素溢出 */
+}
+
+.about-photo-wrapper {
+  flex-shrink: 0;
+}
+
+.pixelated-photo {
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.about-intro {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.5rem;
+}
+
+.about-intro strong {
+  color: #a5b4fc;
+  font-weight: 600;
+}
+
+.about-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+}
+
+.contact-info {
+  margin-top: 1.5rem;
+}
+
+.contact-links {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: rgba(165, 180, 252, 0.1);
+  border: 1px solid rgba(165, 180, 252, 0.3);
+  border-radius: 8px;
+  color: #a5b4fc;
+  text-decoration: none;
+  font-weight: 500;
+  transition:
+    background var(--duration-dropdown) var(--ease-out),
+    border-color var(--duration-dropdown) var(--ease-out),
+    transform var(--duration-dropdown) var(--ease-out);
+}
+
+.contact-link:hover {
+  background: rgba(165, 180, 252, 0.2);
+  border-color: rgba(165, 180, 252, 0.5);
+  transform: translateY(-2px);
+}
+
+.contact-link:active {
+  transform: translateY(-2px) scale(0.97);
+  transition: transform var(--duration-press) var(--ease-out);
+}
+
+/* --- 汉堡菜单按钮样式 --- */
+.menu-toggle {
+  display: none; /* 默认隐藏，仅在移动端显示 */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 101;
+}
+
+.menu-toggle span {
+  width: 30px;
+  height: 3px;
+  background: #a5b4fc;
+  border-radius: 3px;
+  transition:
+    transform var(--duration-dropdown) var(--ease-out),
+    opacity var(--duration-dropdown) var(--ease-out);
+  transform-origin: center;
+}
+
+.menu-toggle span.open:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+
+.menu-toggle span.open:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle span.open:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* =========================
+   移动端响应式样式
+   ========================= */
+
+/* --- 中等屏幕隐藏 Lanyard (1650px 及以下) --- */
+@media (max-width: 1650px) {
+  .lanyard-container {
+    display: none;
+  }
+}
+
+/* --- 平板设备 (768px 及以下) --- */
+@media (max-width: 768px) {
+  /* 导航栏 */
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+
+  .menu-toggle {
+    display: flex; /* 在移动端显示汉堡菜单 */
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%; /* 默认隐藏在右侧 */
+    width: 60%;
+    max-width: 250px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.98);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    transition: right 0.3s ease;
+    border-left: 1px solid rgba(165, 180, 252, 0.2);
+  }
+
+  .nav-links.active {
+    right: 0; /* 打开菜单时滑入 */
+  }
+
+  .navbar a {
+    font-size: 1.2rem;
+  }
+
+  /* 首页 */
+  .hero-content {
+    padding: 1.2rem 1.5rem; /* 从 1.5rem 2rem 减小 */
+    max-width: 90%;
+    margin-right: 5vw; /* 确保右侧有足够的边距 */
+    box-sizing: border-box;
+  }
+
+  .hero-overlay {
+    padding-left: 5vw; /* 从 10vw 减小 */
+    padding-right: 5vw; /* 添加右侧内边距 */
+  }
+
+  /* 页面容器 */
+  .page-container {
+    padding-top: 80px; /* 从 100px 减小 */
+  }
+
+  .content-wrapper {
+    padding: 0 1.2rem 0 3.5rem; /* 左侧留更多空间给 NavigationTimeline */
+    box-sizing: border-box;
+  }
+
+  .page-title {
+    margin-bottom: 2rem; /* 从 3rem 减小 */
+  }
+
+  /* Publications */
+  .publications-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .pub-card {
+    padding: 1.5rem;
+    flex-direction: column; /* 窄屏改为图片在文字下方 */
+    gap: 1.25rem;
+  }
+
+  .pub-card-aside {
+    width: 100%;
+  }
+
+  .pub-card-image {
+    height: 180px;
+  }
+
+  .pub-title {
+    font-size: 1.3rem;
+  }
+
+  /* Resume */
+  .resume-item {
+    flex-direction: column; /* 竖向排列 */
+    padding-left: 1.5rem; /* 从 2rem 减小 */
+  }
+
+  /* 窄屏竖排，日期回到内容上方并左对齐 */
+  .resume-date {
+    order: 0;
+    min-width: auto;
+    margin-left: 0;
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+
+  .section-title {
+    font-size: 1.5rem; /* 从 1.8rem 减小 */
+  }
+
+  .resume-content h3 {
+    font-size: 1.2rem; /* 从 1.4rem 减小 */
+  }
+
+  /* About */
+  .about-with-photo {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .about-photo-wrapper {
+    order: -1; /* 让照片显示在文本上方 */
+    width: 100%;
+    max-width: 280px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pixelated-photo {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .about-intro {
+    font-size: 1.1rem; /* 从 1.2rem 略微减小 */
+  }
+
+  .about-text {
+    font-size: 1rem; /* 从 1.05rem 略微减小 */
+  }
+
+  .contact-links {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .contact-link {
+    text-align: center;
+    padding: 0.8rem 1rem;
+    width: auto;
+    display: block;
+  }
+
+  .contact-link span {
+    word-break: break-all;
+    overflow-wrap: break-word;
+  }
+}
+
+/* --- 小型手机设备 (480px 及以下) --- */
+@media (max-width: 480px) {
+  /* 导航栏 */
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+
+  .language-switcher {
+    font-size: 0.85rem;
+  }
+
+  .nav-links {
+    width: 70%;
+    max-width: 220px;
+  }
+
+  /* 首页 */
+  .hero-content {
+    padding: 1rem;
+    max-width: 85%;
+    margin-right: 5vw;
+  }
+
+  /* 页面容器 */
+  .content-wrapper {
+    padding: 0 1rem 0 3rem; /* 左侧留空间给 NavigationTimeline */
+  }
+
+  /* 页面标题 */
+  .page-title {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Publications */
+  .pub-card {
+    padding: 1.2rem;
+  }
+
+  .pub-title {
+    font-size: 1.2rem;
+  }
+
+  .pub-authors,
+  .pub-abstract {
+    font-size: 0.85rem;
+  }
+
+  /* Resume */
+  .resume-item {
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .resume-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .skills-list span {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* About */
+  .about-with-photo {
+    gap: 1.5rem;
+  }
+
+  .about-photo-wrapper {
+    max-width: 240px;
+  }
+
+  .about-intro {
+    font-size: 1rem;
+  }
+
+  .about-text {
+    font-size: 0.95rem;
+  }
+
+  .contact-link {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .contact-link span {
+    font-size: 0.85rem;
+  }
+}
+
+/* --- 触摸设备优化 --- */
+@media (hover: none) and (pointer: coarse) {
+  /* 增加触摸目标大小 */
+  .navbar a,
+  .language-switcher span,
+  .menu-toggle {
+    min-height: 44px; /* iOS 推荐的最小触摸目标 */
+    display: flex;
+    align-items: center;
+  }
+
+  .pub-card,
+  .contact-link {
+    /* 移除 hover 效果，改为 tap 高亮 */
+    -webkit-tap-highlight-color: rgba(165, 180, 252, 0.2);
+  }
+
+  /* 禁用 OrbitControls 的某些手势以避免冲突 */
+  .canvas-container {
+    touch-action: pan-y; /* 允许垂直滚动，但限制其他手势 */
+  }
+}
+
+/* --- 无障碍：降低透明度偏好 --- */
+@media (prefers-reduced-transparency: reduce) {
+  .navbar,
+  .hero-content,
+  .nav-links,
+  .pill-glass {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .hero-content { background: rgba(5, 5, 5, 0.95); }
+  .nav-links    { background: rgba(0, 0, 0, 0.98); }
+  .pill-glass   { background: rgba(20, 20, 20, 0.96) !important; }
+}
+
+/* --- 无障碍：高对比度偏好 --- */
+@media (prefers-contrast: more) {
+  .hero-content {
+    background: #050505;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+  .contact-link { border-color: rgba(165, 180, 252, 0.7); }
+}

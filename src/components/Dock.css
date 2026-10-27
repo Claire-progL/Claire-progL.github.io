@@ -1,0 +1,88 @@
+.dock-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.dock {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 68px;
+  padding: 0 1.25rem;
+  padding-bottom: 10px;
+  background: rgba(40, 40, 40, 0.55);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-top-color: rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  overflow: visible;
+}
+
+.dock-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  color: currentColor;
+  text-decoration: none;
+  background: rgb(60, 60, 60);
+}
+
+.dock-icon-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dock-icon-inner svg {
+  width: 100%;
+  height: 100%;
+}
+
+.dock-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(30, 30, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.size-full {
+  width: 100%;
+  height: 100%;
+}
+
+/* Background colors for icons */
+.bg-black\/10 {
+  background-color: rgb(60, 60, 60);
+}
+
+.dark .bg-white\/10,
+.bg-white\/10 {
+  background-color: rgb(60, 60, 60);
+}
+
+/* --- 无障碍：降低透明度偏好 --- */
+@media (prefers-reduced-transparency: reduce) {
+  .dock {
+    background: rgba(30, 30, 30, 0.97);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+@media (prefers-contrast: more) {
+  .dock { border-color: rgba(255, 255, 255, 0.4); }
+}

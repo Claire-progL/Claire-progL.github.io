@@ -1,0 +1,91 @@
+/* Gallery 页面样式 */
+
+/* ====================================
+   Gallery 特定内容容器
+   ==================================== */
+.gallery-content {
+  max-width: 1200px;
+}
+
+/* ====================================
+   Tabs 组件样式定制
+   ==================================== */
+.gallery-tabs-container {
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.gallery-tab-button {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(99, 102, 241, 0.25);
+}
+
+.gallery-tab-button:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Tabs 内容区域 - 移除默认的 mt-32 */
+.gallery-tabs-content {
+  margin-top: 1.5rem !important;
+}
+
+/* ====================================
+   Grid 容器
+   ==================================== */
+.gallery-grid-container {
+  width: 100%;
+  padding-bottom: 3rem;
+}
+
+/* ====================================
+   响应式调整
+   ==================================== */
+@media (max-width: 768px) {
+  .gallery-content {
+    max-width: 100%;
+  }
+
+  .gallery-tabs-container {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .gallery-tab-button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .gallery-tabs-content {
+    margin-top: 1rem !important;
+  }
+
+  .gallery-grid-container {
+    padding-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-tab-button {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+  }
+}
+
+/* ====================================
+   展开图片磨砂玻璃边框
+   ==================================== */
+.expanded-image-style {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.3),
+    0 20px 50px -10px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
